@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :images do
+    member do
+      put "like", to: "images#upvote"
+    end
+  end
   devise_for :users, :controllers => {:registrations => "users/registrations"}
 
   root 'welcome#index'
