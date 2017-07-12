@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :authenticate_user!, :except => [:index, :show, :upvote]
   def upvote
     @image.upvote_by current_user
     redirect_to :back
