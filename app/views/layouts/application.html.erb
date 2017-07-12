@@ -48,9 +48,17 @@
       <%= link_to('SwissOud', root_path, class: 'navbar-brand', title: 'SwissOud')  %>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
+             <% if user_signed_in? %>
+          <li><%= link_to('New Picture', new_image_path, title: 'New Picture', :method => :get) %></li>
+          <li><%= link_to('Edit Profile', edit_user_registration_path, title: 'Edit profile', :method => :get) %></li>
+            <li><%= link_to('Photos', images_path , title: 'Photos', :method => :get) %></li>
+             <% else %>
             <li><%= link_to('Photos', images_path, class: 'btn btn-xs btn', title: 'Photos', :method => :get) %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+
+            <li><%= link_to "About us", "/path2"  %></li>
+            <li><%= link_to "Contact us", "/path3"  %></li>
+            <% end %>
+
               <form class="navbar-form navbar-left">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
@@ -75,6 +83,8 @@
        <% if user_signed_in? %>
           <li><%= link_to('logout', destroy_user_session_path, class: 'btn btn-xs btn-danger', title: 'logout', :method => :delete) %></li>
         <% else %>
+        <li><%= link_to('login', new_user_session_path, title: 'login', :method => :get) %></li>
+
         <% end %>
       </ul>
         </div>
