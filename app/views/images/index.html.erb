@@ -1,0 +1,11 @@
+<% @images = Image.all %>
+<% @images.in_groups_of(4, false).each do |group| %>
+  <div class='row'>
+    <% group.each do |pic| %>
+      <div class='col-md-4'>
+        <%= link_to((image_tag pic.picture.url, class: "img-responsive"), pic) %>
+        <h3><%= pic.name %></h3>
+      </div>
+    <% end %>
+  </div>
+<% end %>
